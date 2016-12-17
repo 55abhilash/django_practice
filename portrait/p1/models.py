@@ -9,8 +9,3 @@ class posts(models.Model):
     title = models.CharField(max_length = 100)
     bodytext = models.TextField()
     timestamp = models.DateTimeField()
-
-class insert():
-    x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date(1995, 2, 2))
-    x.save()
-
