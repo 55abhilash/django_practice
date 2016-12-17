@@ -1,0 +1,27 @@
+DJANGO TL;DR TUTORIAL
+
+1) Download tar from django website. Install latest version 1.9.
+2) Extract it. Run python setup.py install from the extracted folder.
+3) It will install.
+
+4) django-admin.py startproject portrait -> will start a project called portrait by creating the necessary init files. note : django-admin.py is a installed binary in system folders not in django installation.
+5) cd portrait. ls to see what all files and folders are created.
+6) python manage.py startapp p1. An app is a set of various features which can be reused again and again. Read about concept of app in django documentation.
+
+7) cd p1. vim models.py. Read Model view controller architecture, very commonly used web app architecture. Django makes it extremely easy to bind our code to this architecture.
+
+8) models.py contains the model files, i.e. data structures to be used.
+9) Make sure mysql or any database is already installed. vim settings.py -> change database settings to include username, password, etc. of database.
+10) Now, python manage.py makemigrations will create the database tables from the models classes and python manage.py migrate, will automatically write the models, i.e. classes to the database.
+
+11) vim urls.py -> Which page to redirect to when a certain url pattern is found.
+12) vim views.py -> corresponds to the view in MVC. Contains python code / script to dynamically render what to display to the user.
+13) Also contains code to where to redirect the user to when a certain type of request, GET / POST is encountered.
+
+14) Templates are the actual html files to be displayed to the user.
+15) cd portrait/p1/ mkdir templates -> This will contain templates for the app p1.
+16) See the urls.py. The class called index in views.py is written corresponding to '^$' i.e. root. That is, nothing after localhost:8000/
+17) Thus when a user types localhost:8000, the display work is to be done by the class called index in views.py. 
+18) views.py redirects user to index.html. index.html stored in p1/templates.
+
+19) python manage.py runserver to run the server. Then go to the browser to localhost:8000. 8000 is default port no. can be changed in settings.py

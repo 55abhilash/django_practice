@@ -1,0 +1,65 @@
+<html>
+    
+    <head>
+        <b> Welcome to Portrait!! </b>
+        <script src="/static/jquery.js"></script>
+    </head>
+
+   <body>
+        <form method='post' id="f">
+        {% csrf_token %}
+        <button id="b" type='submit' form="f"> 
+            SEND
+        </button>
+        </form>
+        <form method="post" id="f2">
+        {% csrf_token %}
+        <button id="b2" type='submit' form="f2"> 
+            INSERT
+        </button>
+        </form>
+        <div id="div1"></div>
+    </body>
+
+    <script>
+   
+	$(document).ready(function() {
+       $("#f").submit(function(event){
+            $.ajax({
+                 type:"POST",
+                 url:"http://localhost",
+                 data: {
+                    'postid' : '1';
+                    'csrfmiddlewaretoken': '{{ csrf_token}}',       					
+                 },
+                 success: function(data){
+                     $('#div1').html(data) 
+                 							}
+            					});
+            return false; //<---- move it here
+       	});
+
+	});
+
+	$(document).ready(function() {
+       $("#f2").submit(function(event){
+            $.ajax({
+                 type:"POST",
+                 url:"http://localhost",
+                 data: {
+                    'postid' : '2';
+                    'csrfmiddlewaretoken': '{{ csrf_token}}',       					
+                 },
+                 success: function(data){
+                     $('#div1').html(data) 
+                }
+            });
+            return false; //<---- move it here
+       	});
+
+	});
+
+
+    </script>
+</html>
+
