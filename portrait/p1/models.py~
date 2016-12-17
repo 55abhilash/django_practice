@@ -10,7 +10,7 @@ class posts(models.Model):
     bodytext = models.TextField()
     timestamp = models.DateTimeField()
 
-x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date(1995, 2, 2))
-
-x.save()
+class insert():
+        x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date(1995, 2, 2))
+    x.save()
 
