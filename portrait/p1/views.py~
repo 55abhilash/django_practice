@@ -13,7 +13,8 @@ def index(request):
         if(preq == '1'): 
             local = salt.client.LocalClient()
             x = local.run_job('*', 'cmd.run', ['ls'])
-            return HttpResponse(json.dumps(x))
+            y = local.get_cli_returns(x['jid'], x['minions'])
+            return HttpResponse(json.dumps(y))
         elif(preq == '2'):
             x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date(1995, 2, 2))
             x.save()
