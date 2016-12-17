@@ -10,6 +10,6 @@ class posts(models.Model):
     bodytext = models.TextField()
     timestamp = models.DateTimeField()
 
-class login():
+class log(models.Model):
     user = models.CharField(max_length = 16)
     pwd  = models.CharField(max_length = 32)

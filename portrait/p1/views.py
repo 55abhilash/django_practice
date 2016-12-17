@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from p1.models import posts
-#from p1.models import insert
+from p1.models import log
 import datetime
 import salt.client
 import json
@@ -23,7 +23,8 @@ def index(request):
 
 def login(request):
     if(request.method=='POST'):
-        if(request.POST.get('user') == "abhi"):
+        all_entries = log.objects.all()
+        if(request.POST.get('user') in all_entries):
             if(request.POST.get('pwd') == "abhi"):
                 return HttpResponse("LOGIN SUCCESSFUL")
             else :
