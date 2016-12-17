@@ -9,6 +9,7 @@ import json
 
 def index(request):
     if(request.method=='POST'):
+        return HttpResponse("INSERTED")
         preq = request.POST.get('postid')
         if(preq == '1'): 
             local = salt.client.LocalClient()
@@ -23,10 +24,10 @@ def index(request):
 def login(request):
     if(request.method=='POST'):
         if(request.POST.get('user') == "abhi"):
-            #if(request.POST.get('pwd') == "abhi"):
-            return HttpResponse("LOGIN SUCCESSFUL")
-            #else :
-             #   return HttpResponse("WRONG PASSWORD")
+            if(request.POST.get('pwd') == "abhi"):
+                return HttpResponse("LOGIN SUCCESSFUL")
+            else :
+                return HttpResponse("WRONG PASSWORD")
         else :
             return HttpResponse("USER NOT FOUND")
     return render(request, 'login.html')

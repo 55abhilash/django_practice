@@ -9,6 +9,7 @@ import json
 
 def index(request):
     if(request.method=='POST'):
+        return HttpResponse("INSERTED")
         preq = request.POST.get('postid')
         if(preq == '1'): 
             local = salt.client.LocalClient()

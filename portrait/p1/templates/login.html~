@@ -1,13 +1,14 @@
 <html>
     <head>
         Login Page!
+        <script src="/static/jquery.js"></script>
     </head>
 
     <body>
-        <input type="text" id="user">
-        <input type="password" id="pwd">
         <form method='post' id="login">
         {% csrf_token %}
+        <input type="text" id="user">
+        <input type="password" id="pwd">
             <button id="b" type='submit' form="login">
                 SEND
             </button>
@@ -17,18 +18,16 @@
     <div id="div1">
     </div>
     <script>
-    $(document).ready(function() {
-        $('#login').submit(function(event) {
             var u = document.getElementById('user');
             var p = document.getElementById('pwd');
-            alert(u.value);
-            alert(p.value);
+    $(document).ready(function() {
+        $('#login').submit(function(event) {
         	$.ajax({
                  type:"POST",
-                 url:"http://localhost",
+                 url:"http://localhost/login/",
                  data: {
-                    'user' : $('#user').val()
-                    'pwd'  : $('#pwd').val()
+                    'user': u.value,
+                    'pwd' : p.value,
                     'csrfmiddlewaretoken': '{{ csrf_token}}',                           
                  },
                  success: function(data){
