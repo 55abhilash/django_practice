@@ -13,10 +13,20 @@ def index(request):
         if(preq == '1'): 
             local = salt.client.LocalClient()
             x = local.run_job('*', 'cmd.run', ['ls'])
-            y = local.get_cli_returns(x['jid'], x['minions'])
-            return HttpResponse(json.dumps(y))
+            return HttpResponse(json.dumps(x))
         elif(preq == '2'):
             x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date(1995, 2, 2))
             x.save()
             return HttpResponse("INSERTED")
     return render(request, 'index.html')
+
+def login(request):
+    if(request.method=='POST'):
+        if(request.POST.get('user') == "abhi"):
+            #if(request.POST.get('pwd') == "abhi"):
+            return HttpResponse("LOGIN SUCCESSFUL")
+            #else :
+             #   return HttpResponse("WRONG PASSWORD")
+        else :
+            return HttpResponse("USER NOT FOUND")
+    return render(request, 'login.html')

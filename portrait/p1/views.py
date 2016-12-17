@@ -19,3 +19,14 @@ def index(request):
             x.save()
             return HttpResponse("INSERTED")
     return render(request, 'index.html')
+
+def login(request):
+    if(request.method=='POST'):
+        if(request.POST.get('user') == "abhi"):
+            if(request.POST.get('pwd') == "abhi"):
+                return HttpResponse("LOGIN SUCCESSFUL")
+            else :
+                return HttpResponse("WRONG PASSWORD")
+        else :
+            return HttpResponse("USER NOT FOUND")
+    return render(request, 'login.html')

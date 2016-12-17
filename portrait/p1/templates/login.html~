@@ -1,0 +1,42 @@
+<html>
+    <head>
+        Login Page!
+    </head>
+
+    <body>
+        <input type="text" id="user">
+        <input type="password" id="pwd">
+        <form method='post' id="login">
+        {% csrf_token %}
+            <button id="b" type='submit' form="login">
+                SEND
+            </button>
+        </form>
+
+    </body>
+    <div id="div1">
+    </div>
+    <script>
+    $(document).ready(function() {
+        $('#login').submit(function(event) {
+            var u = document.getElementById('user');
+            var p = document.getElementById('pwd');
+            alert(u.value);
+            alert(p.value);
+        	$.ajax({
+                 type:"POST",
+                 url:"http://localhost",
+                 data: {
+                    'user' : $('#user').val()
+                    'pwd'  : $('#pwd').val()
+                    'csrfmiddlewaretoken': '{{ csrf_token}}',                           
+                 },
+                 success: function(data){
+                     $('#div1').html(data) 
+                 }
+            });
+            return false; //<---- move it here
+        });
+    });
+    </script>
+</html>

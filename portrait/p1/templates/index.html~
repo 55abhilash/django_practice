@@ -29,7 +29,7 @@
                  type:"POST",
                  url:"http://localhost",
                  data: {
-                    'postid' : '1';
+                    'postid' : '1',
                     'csrfmiddlewaretoken': '{{ csrf_token}}',       					
                  },
                  success: function(data){
@@ -47,7 +47,7 @@
                  type:"POST",
                  url:"http://localhost",
                  data: {
-                    'postid' : '2';
+                    'postid' : '2',
                     'csrfmiddlewaretoken': '{{ csrf_token}}',       					
                  },
                  success: function(data){
