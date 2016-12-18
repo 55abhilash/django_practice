@@ -13,4 +13,4 @@ class posts(models.Model):
 
 class log(models.Model):
     user = models.CharField(max_length = 16)
-    pwd  = models.CharField(max_length = 32)
+    pwd  = models.CharField(max_length = 128)
