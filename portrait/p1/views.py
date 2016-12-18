@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from p1.models import posts
 from p1.models import log
@@ -33,7 +34,7 @@ def login(request):
 # entry.user -> access the value of column 'user' in the entry.
             if(request.POST.get('user') == entry.user):
                 if(hashers.check_password(request.POST.get('pwd'), entry.pwd)):
-                    return HttpResponse("LOGIN SUCCESSFUL")
+                    return redirect('http://localhost/')
                 else :
                     return HttpResponse("WRONG PASSWORD")
         return HttpResponse("USER NOT FOUND")
