@@ -23,10 +23,13 @@ def index(request):
 
 def login(request):
     if(request.method=='POST'):
-        all_entries = log.objects.all()
+        all_entries = log.objects.all() 
+# all_entries is a query set. We have to iterate over a query set in order
+# to access each entry in the database table.
         t = log(user="abhi", pwd="abhi")
         t.save()
         for entry in all_entries :
+# entry.user -> access the value of column 'user' in the entry.
             if(request.POST.get('user') == entry.user):
                 if(request.POST.get('pwd') == entry.pwd):
                     return HttpResponse("LOGIN SUCCESSFUL")
