@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from p1.models import posts
 from p1.models import log
 from django.contrib.auth import hashers
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 import datetime
 import salt.client
 import json
@@ -23,7 +26,7 @@ def index(request):
             return HttpResponse("INSERTED")
     return render(request, 'index.html')
 
-def login(request):
+def login_1(request):
     if(request.method=='POST'):
         all_entries = log.objects.all() 
 # all_entries is a query set. We have to iterate over a query set in order
@@ -34,10 +37,22 @@ def login(request):
 # entry.user -> access the value of column 'user' in the entry.
             if(request.POST.get('user') == entry.user):
                 if(hashers.check_password(request.POST.get('pwd'), entry.pwd)):
-                    return redirect('http://localhost/')
+                    redirect('http://localhost/')
                 else :
                     return HttpResponse("WRONG PASSWORD")
         return HttpResponse("USER NOT FOUND")
-            
+# not a post request, i.e. just the login.html url is typed         
+    else :
+        return render(request, 'login.html')
+
+def login_portrait(request):
+    if(request.method=='POST'):
+        User.objects.create_user("abhi", "abhilashmhaisne@gmail.com", "abhi")
+        user = authenticate(username=request.POST.get('user'), password=request.POST.get('pwd'))
+        if(user is not None):
+            login(request, user)
+            return HttpResponseRedirect('http://localhost/')
+        else :
+            return HttpResponse("Invalid Credentials")
     else :
         return render(request, 'login.html')
