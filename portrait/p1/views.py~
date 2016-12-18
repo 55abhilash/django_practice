@@ -24,11 +24,15 @@ def index(request):
 def login(request):
     if(request.method=='POST'):
         all_entries = log.objects.all()
-        if(request.POST.get('user') == "abhi"):
-            if(request.POST.get('pwd') == "abhi"):
-                return HttpResponse("LOGIN SUCCESSFUL")
-            else :
-                return HttpResponse("WRONG PASSWORD")
-        else :
-            return HttpResponse("USER NOT FOUND")
-    return render(request, 'login.html')
+        t = log(user="abhi", pwd="abhi")
+        t.save()
+        for entry in all_entries :
+            if(request.POST.get('user') == entry.user):
+                if(request.POST.get('pwd') == entry.pwd):
+                    return HttpResponse("LOGIN SUCCESSFUL")
+                else :
+                    return HttpResponse("WRONG PASSWORD")
+        return HttpResponse("USER NOT FOUND")
+            
+    else :
+        return render(request, 'login.html')

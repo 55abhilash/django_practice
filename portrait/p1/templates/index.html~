@@ -1,5 +1,4 @@
-<html>
-    
+<html> 
     <head>
         <b> Welcome to Portrait!! </b>
         <script src="/static/jquery.js"></script>
@@ -19,10 +18,9 @@
         </button>
         </form>
         <div id="div1"></div>
-    </body>
-
+   </body>
     <script>
-   
+
 	$(document).ready(function() {
        $("#f").submit(function(event){
             $.ajax({
@@ -38,9 +36,7 @@
             					});
             return false; //<---- move it here
        	});
-
 	});
-
 	$(document).ready(function() {
        $("#f2").submit(function(event){
             $.ajax({
@@ -56,10 +52,7 @@
             });
             return false; //<---- move it here
        	});
-
 	});
-
-
     </script>
 </html>
 
