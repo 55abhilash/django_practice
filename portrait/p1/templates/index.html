@@ -31,9 +31,14 @@
                     'csrfmiddlewaretoken': '{{ csrf_token}}',       					
                  },
                  success: function(data){
-                     $('#div1').html(data) 
-                 							}
-            					});
+                     if(data.status == '1') {
+                        $('#div1').html(data) 
+                     }
+                     else if(data.status == '0') {
+                        window.location(data.url)
+                     }
+                 }
+            });
             return false; //<---- move it here
        	});
 	});

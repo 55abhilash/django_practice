@@ -51,8 +51,10 @@ def login_portrait(request):
         user = authenticate(username=request.POST.get('user'), password=request.POST.get('pwd'))
         if(user is not None):
             login(request, user)
-            return HttpResponseRedirect('http://localhost/')
+            resp = {'status' : '0', 'url' : 'http://localhost/'}
+            return HttpResponse(json.dumps(resp), content_type = 'application/json')
         else :
-            return HttpResponse("Invalid Credentials")
+            resp = {'status' : '1', 'message' : 'Invalid Credentials'}
+            return HttpResponse(json.dumps(resp), content_type = 'application/json')
     else :
         return render(request, 'login.html')
