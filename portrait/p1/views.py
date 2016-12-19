@@ -52,10 +52,13 @@ def login_1(request):
         return render(request, 'login.html')
 
 def login_portrait(request):
+    if(not request.user.is_anonymous()):
+        return render(request, 'index.html')
     if(request.method=='POST'):
         try:
             getuser = User.objects.get(username="abhi")
         except getuser.DoesNotExist:
+            #Create an example user abhi, if not already present
             User.objects.create_user("abhi", "abhilashmhaisne@gmail.com", "abhi")
         user = authenticate(username=request.POST.get('user'), password=request.POST.get('pwd'))
         if(user is not None):
