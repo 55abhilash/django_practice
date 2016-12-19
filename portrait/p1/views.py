@@ -7,14 +7,15 @@ from p1.models import log
 from django.contrib.auth import hashers
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 import datetime
 import salt.client
 import json
 # Create your views here.
 
+@login_required(login_url='/login/')
 def index(request):
-    if(request.method=='POST'):
-        return HttpResponse("INSERTED")
+    if(request.method=='POST'): 
         preq = request.POST.get('postid')
         if(preq == '1'): 
             local = salt.client.LocalClient()
