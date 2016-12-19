@@ -47,7 +47,10 @@ def login_1(request):
 
 def login_portrait(request):
     if(request.method=='POST'):
-        User.objects.create_user("abhi", "abhilashmhaisne@gmail.com", "abhi")
+        try:
+            getuser = User.objects.get(username="abhi")
+        except getuser.DoesNotExist:
+            User.objects.create_user("abhi", "abhilashmhaisne@gmail.com", "abhi")
         user = authenticate(username=request.POST.get('user'), password=request.POST.get('pwd'))
         if(user is not None):
             login(request, user)
