@@ -17,6 +17,12 @@
             INSERT
         </button>
         </form>
+        <form method="post" id="logout">
+        {% csrf_token %}
+        <button id="b2" type='submit' form="logout"> 
+            LOGOUT
+        </button>
+        </form>
         <div id="div1"></div>
    </body>
     <script>
@@ -52,7 +58,23 @@
                     'csrfmiddlewaretoken': '{{ csrf_token}}',       					
                  },
                  success: function(data){
-                     $('#div1').html(data) 
+                        $('#div1').html(data) 
+                }
+            });
+            return false; //<---- move it here
+       	});
+	});
+	$(document).ready(function() {
+       $("#logout").submit(function(event){
+            $.ajax({
+                 type:"POST",
+                 url:"http://localhost",
+                 data: {
+                    'postid' : '3',
+                    'csrfmiddlewaretoken': '{{ csrf_token}}',       					
+                 },
+                 success: function(data){
+                        window.location.replace(data.url);   
                 }
             });
             return false; //<---- move it here

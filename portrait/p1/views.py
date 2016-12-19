@@ -25,6 +25,10 @@ def index(request):
             x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date(1995, 2, 2))
             x.save()
             return HttpResponse("INSERTED")
+        elif(preq == '3'):
+            logout(request)
+            resp = {'status' : '0', 'url' : 'http://localhost/login/'}
+            return HttpResponse(json.dumps(resp), content_type='application/json')
     return render(request, 'index.html')
 
 def login_1(request):
