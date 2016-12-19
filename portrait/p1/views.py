@@ -53,7 +53,7 @@ def login_1(request):
 
 def login_portrait(request):
     if(not request.user.is_anonymous()):
-        return render(request, 'index.html')
+        return redirect('http://localhost/')
     if(request.method=='POST'):
         try:
             getuser = User.objects.get(username="abhi")
