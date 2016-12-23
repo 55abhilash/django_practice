@@ -23,7 +23,7 @@ def index(request):
             x = local.run_job('*', 'cmd.run', ['ls'])
             return HttpResponse(json.dumps(x))
         elif(preq == '2'):
-            x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date(1995, 2, 2))
+            x = posts(author="abc", title="tit", bodytext="alsjkdfl", timestamp=datetime.date.today())
             x.save()
             return HttpResponse("INSERTED")
         elif(preq == '3'):
